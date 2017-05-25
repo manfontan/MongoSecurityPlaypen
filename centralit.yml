@@ -32,4 +32,8 @@
     - name: Install and configure PyKMIP
       include: tasks/install_pykmip.yml
       when: encryptdb_enabled and encryptdb_key_loc == 'kmip'
+      
+    - name: Generate TLS/SSL CA & server key/cert files for encryption over the wire
+      include: tasks/generate_server_keys.yml
+      when: ssl_enabled or client_auth_method == 'cert'
 
